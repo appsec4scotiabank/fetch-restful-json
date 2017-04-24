@@ -1,3 +1,3 @@
 ## fetch-rest-json
 
-The future sitre of amazing restful json fetch APIs.
+The future site of amazing restful json fetch APIs.
