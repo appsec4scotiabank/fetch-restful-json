@@ -1,3 +1,3 @@
-## fetch-rest-json
+## fetch-restful-json
 
-The future site of amazing restful json fetch APIs.
+Simple RESTful APIs for [fetch clients](https://github.com/github/fetch).
