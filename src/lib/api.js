@@ -9,12 +9,9 @@ export const DEFAULT_OPTIONS = {
 
 const send = (path, options) => fetch(path, merge(DEFAULT_OPTIONS, options));
 
-const post = (path, body) => fetch(
+const post = (path, body) => send(
   path,
-  merge(DEFAULT_OPTIONS, {
-    method: 'POST',
-    body: JSON.stringify(body)
-  })
+  { method: 'POST', body: JSON.stringify(body) }
 );
 
 export default {
