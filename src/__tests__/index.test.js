@@ -1,8 +1,8 @@
 import fetchRestfulJson from '../index';
-import { buildCRUDService } from '../lib/crud-service';
+import { buildService } from '../lib/service';
 
 describe('index', () => {
-  test('exports buildCRUDService', () => {
-    expect(fetchRestfulJson).toEqual(buildCRUDService);
+  test('exports buildService', () => {
+    expect(fetchRestfulJson).toEqual(buildService);
   });
 });

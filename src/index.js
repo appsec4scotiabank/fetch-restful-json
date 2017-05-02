@@ -1,2 +1,2 @@
-import { buildCRUDService } from './lib/crud-service';
-export default buildCRUDService;
+import { buildService } from './lib/service';
+export default buildService;
