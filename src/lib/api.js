@@ -14,8 +14,17 @@ const post = (path, body) => send(
   { method: 'POST', body: JSON.stringify(body) }
 );
 
+const put = (path, body) => send(
+  path,
+  { method: 'PUT', body: JSON.stringify(body) }
+);
+
+const fetchDelete = (path) => send(path, { method: 'DELETE' });
+
 export default {
   send,
   get: send,
-  post
+  post,
+  put,
+  delete: fetchDelete
 };

@@ -55,4 +55,36 @@ describe('api', () => {
       );
     });
   });
+
+  describe('#put', () => {
+    test('should make put request', () => {
+      global.fetch = jest.fn();
+      const cake = { name: 'Chocolate', tastiness: 5 };
+
+      api.put(TEST_ENDPOINT, cake);
+
+      expect(fetch).toHaveBeenCalledWith(
+        TEST_ENDPOINT,
+        merge(DEFAULT_OPTIONS, {
+          method: 'PUT',
+          body: JSON.stringify(cake)
+        })
+      );
+    });
+  });
+
+  describe('#delete', () => {
+    test('should make delete request', () => {
+      global.fetch = jest.fn();
+
+      api.delete(TEST_ENDPOINT);
+
+      expect(fetch).toHaveBeenCalledWith(
+        TEST_ENDPOINT,
+        merge(DEFAULT_OPTIONS, {
+          method: 'DELETE'
+        })
+      );
+    });
+  });
 });

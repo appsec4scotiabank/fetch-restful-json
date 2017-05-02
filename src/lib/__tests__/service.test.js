@@ -32,4 +32,29 @@ describe('crud-service', () => {
       });
     });
   });
+
+  describe('#update', () => {
+    test('should make put request', () => {
+      api.put = jest.fn().mockImplementation(mockResponse({ body: cake }));
+
+      const service = buildService(TEST_ENDPOINT);
+
+      return service.update('1', cake).then((result) => {
+        expect(api.put).toHaveBeenCalledWith(TEST_ENDPOINT + '/1', cake);
+        expect(result).toEqual(cake);
+      });
+    });
+  });
+
+  describe('#delete', () => {
+    test('should make delete request', () => {
+      api.delete = jest.fn().mockImplementation(mockResponse({}));
+
+      const service = buildService(TEST_ENDPOINT);
+
+      return service.delete('1').then((result) => {
+        expect(api.delete).toHaveBeenCalledWith(TEST_ENDPOINT + '/1');
+      });
+    });
+  });
 });
