@@ -55,6 +55,21 @@ describe('crud-service', () => {
         expect(result).toEqual(cake);
       });
     });
+
+    test('should make patch request given partial flag set to true', () => {
+      api.patch = jest.fn().mockImplementation(mockResponse({ body: cake }));
+
+      const service = buildService(TEST_ENDPOINT);
+
+      return service.update('1', cake, { partial: true }).then((result) => {
+        expect(api.patch).toHaveBeenCalledWith(
+          `${TEST_ENDPOINT}/1`,
+          cake,
+          DEFAULT_OPTIONS
+        );
+        expect(result).toEqual(cake);
+      });
+    });
   });
 
   describe('#delete', () => {

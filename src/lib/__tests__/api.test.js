@@ -68,6 +68,20 @@ describe('api', () => {
     });
   });
 
+  describe('#patch', () => {
+    test('should make patch request', () => {
+      global.fetch = jest.fn();
+      const cake = { name: 'Chocolate', tastiness: 5 };
+
+      api.patch(TEST_ENDPOINT, cake);
+
+      expect(fetch).toHaveBeenCalledWith(
+        TEST_ENDPOINT,
+        { method: 'PATCH', body: JSON.stringify(cake) }
+      );
+    });
+  });
+
   describe('#delete', () => {
     test('should make delete request', () => {
       global.fetch = jest.fn();

@@ -14,6 +14,11 @@ const put = (path, body) => send(
   { method: 'PUT', body: JSON.stringify(body) }
 );
 
+const patch = (path, body) => send(
+  path,
+  { method: 'PATCH', body: JSON.stringify(body) }
+);
+
 const del = (path) => send(path, { method: 'DELETE' });
 
 export default {
@@ -21,5 +26,6 @@ export default {
   get,
   post,
   put,
+  patch,
   delete: del
 };

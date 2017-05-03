@@ -28,8 +28,12 @@ class Service {
   create(body) {
     return makeRequest(api.post, this.endpoint, body);
   }
-  update(id, body) {
-    return makeRequest(api.put, getUrl(this.endpoint, id), body);
+  update(id, body, { partial } = {}) {
+    return makeRequest(
+      partial ? api.patch : api.put,
+      getUrl(this.endpoint, id),
+      body
+    );
   }
   delete(id) {
     return makeRequest(api.delete, getUrl(this.endpoint, id));
