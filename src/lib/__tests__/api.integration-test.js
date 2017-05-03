@@ -1,12 +1,14 @@
 import 'whatwg-fetch';
+import api from '../api';
 import fetchMock from 'fetch-mock';
 
-import { buildService } from '../service';
-
 describe('service', () => {
-  const testEndpoint = 'http://myapp.com/users';
+  const testEndpoint = 'http://fakeapp.test/users';
   const cake = { name: 'Chocolate' };
   const detailEndpoint = `${testEndpoint}/1`;
+  const verifyResponse = (response, expectedData) => {
+    response.json().then((data) => expect(data).toEqual(expectedData));
+  };
 
   afterEach(() => {
     fetchMock.restore();
@@ -15,11 +17,10 @@ describe('service', () => {
   describe('#find', () => {
     test('should make get request', () => {
       fetchMock.get(testEndpoint, cake);
-      const service = buildService(testEndpoint);
 
-      return service.find().then((result) => {
+      return fetch(testEndpoint).then((response) => {
         expect(fetchMock.done(testEndpoint)).toEqual(true);
-        expect(result).toEqual(cake);
+        verifyResponse(response, cake);
       });
     });
   });
@@ -28,11 +29,9 @@ describe('service', () => {
     test('should make post request', () => {
       fetchMock.post(testEndpoint, { response: 200 });
 
-      const service = buildService(testEndpoint);
-
-      return service.create(cake).then((result) => {
+      return api.post(testEndpoint, cake).then((response) => {
         expect(fetchMock.done(testEndpoint)).toEqual(true);
-        expect(result).toEqual({ response: 200 });
+        verifyResponse(response, { response: 200 });
       });
     });
   });
@@ -41,24 +40,18 @@ describe('service', () => {
     test('should make put request', () => {
       fetchMock.put(detailEndpoint, { response: 200 });
 
-      const service = buildService(testEndpoint);
-
-      return service.update('1', cake).then((result) => {
+      return api.put(detailEndpoint, cake).then((response) => {
         expect(fetchMock.done(detailEndpoint)).toEqual(true);
-        expect(result).toEqual({ response: 200 });
+        verifyResponse(response, { response: 200 });
       });
     });
-  });
 
-  describe('#patch', () => {
-    test('should make patch request', () => {
+    test('should make put request given partial update', () => {
       fetchMock.patch(detailEndpoint, { response: 200 });
 
-      const service = buildService(testEndpoint);
-
-      return service.patch('1', cake).then((result) => {
+      return api.patch(detailEndpoint, cake).then((response) => {
         expect(fetchMock.done(detailEndpoint)).toEqual(true);
-        expect(result).toEqual({ response: 200 });
+        verifyResponse(response, { response: 200 });
       });
     });
   });
@@ -67,11 +60,9 @@ describe('service', () => {
     test('should make delete request', () => {
       fetchMock.delete(detailEndpoint, { response: 200 });
 
-      const service = buildService(testEndpoint);
-
-      return service.remove('1').then((result) => {
+      return api.delete(detailEndpoint).then((response) => {
         expect(fetchMock.done(detailEndpoint)).toEqual(true);
-        expect(result).toEqual({ response: 200 });
+        verifyResponse(response, { response: 200 });
       });
     });
   });
