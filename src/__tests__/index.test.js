@@ -1,8 +1,8 @@
-import fetchRestfulJson from '../index';
-import { buildService } from '../lib/service';
+import exported from '../index';
+import fetchRestfulJson from '../lib/fetch-restful-json';
 
 describe('index', () => {
-  test('exports buildService', () => {
-    expect(fetchRestfulJson).toEqual(buildService);
+  test('exports fetch-restful-json', () => {
+    expect(exported).toEqual(fetchRestfulJson);
   });
 });

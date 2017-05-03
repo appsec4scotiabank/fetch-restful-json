@@ -1,2 +1,2 @@
-import { buildService } from './lib/service';
-export default buildService;
+import fetchRestfulJson from './lib/fetch-restful-json';
+export default fetchRestfulJson;
