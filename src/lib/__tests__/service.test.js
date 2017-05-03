@@ -48,7 +48,7 @@ describe('crud-service', () => {
 
       return service.update('1', cake).then((result) => {
         expect(api.put).toHaveBeenCalledWith(
-          TEST_ENDPOINT + '/1',
+          `${TEST_ENDPOINT}/1`,
           cake,
           DEFAULT_OPTIONS
         );
@@ -65,7 +65,7 @@ describe('crud-service', () => {
 
       return service.delete('1').then((result) => {
         expect(api.delete).toHaveBeenCalledWith(
-          TEST_ENDPOINT + '/1',
+          `${TEST_ENDPOINT}/1`,
           DEFAULT_OPTIONS
         );
       });

@@ -18,10 +18,7 @@ describe('api', () => {
       });
       expect(fetch).toHaveBeenCalledWith(
         TEST_ENDPOINT,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/pdf' }
-        }
+        { method: 'POST', headers: { 'Content-Type': 'application/pdf' } }
       );
     });
 
@@ -52,10 +49,7 @@ describe('api', () => {
 
       expect(fetch).toHaveBeenCalledWith(
         TEST_ENDPOINT,
-        {
-          method: 'POST',
-          body: JSON.stringify(cake)
-        }
+        { method: 'POST', body: JSON.stringify(cake) }
       );
     });
   });
@@ -69,10 +63,7 @@ describe('api', () => {
 
       expect(fetch).toHaveBeenCalledWith(
         TEST_ENDPOINT,
-        {
-          method: 'PUT',
-          body: JSON.stringify(cake)
-        }
+        { method: 'PUT', body: JSON.stringify(cake) }
       );
     });
   });
@@ -85,9 +76,7 @@ describe('api', () => {
 
       expect(fetch).toHaveBeenCalledWith(
         TEST_ENDPOINT,
-        {
-          method: 'DELETE'
-        }
+        { method: 'DELETE' }
       );
     });
   });
