@@ -48,13 +48,15 @@ describe('service', () => {
         expect(result).toEqual({ response: 200 });
       });
     });
+  });
 
-    test('should make put request given partial update', () => {
+  describe('#patch', () => {
+    test('should make patch request', () => {
       fetchMock.patch(detailEndpoint, { response: 200 });
 
       const service = buildService(testEndpoint);
 
-      return service.update('1', cake, { partial: true }).then((result) => {
+      return service.patch('1', cake).then((result) => {
         expect(fetchMock.done(detailEndpoint)).toEqual(true);
         expect(result).toEqual({ response: 200 });
       });
