@@ -5,6 +5,9 @@ import { buildService } from '../service';
 
 describe('crud-service', () => {
   const TEST_ENDPOINT = '/api/test';
+  const DEFAULT_OPTIONS = {
+    headers: { 'Content-Type': 'application/json' }
+  };
   const cake = { name: 'Chocolate' };
 
   describe('#find', () => {
@@ -14,7 +17,7 @@ describe('crud-service', () => {
       const service = buildService(TEST_ENDPOINT);
 
       return service.find().then((result) => {
-        expect(api.get).toHaveBeenCalledWith(TEST_ENDPOINT);
+        expect(api.get).toHaveBeenCalledWith(TEST_ENDPOINT, DEFAULT_OPTIONS);
         expect(result).toEqual(cake);
       });
     });
@@ -27,7 +30,11 @@ describe('crud-service', () => {
       const service = buildService(TEST_ENDPOINT);
 
       return service.create(cake).then((result) => {
-        expect(api.post).toHaveBeenCalledWith(TEST_ENDPOINT, cake);
+        expect(api.post).toHaveBeenCalledWith(
+          TEST_ENDPOINT,
+          cake,
+          DEFAULT_OPTIONS
+        );
         expect(result).toEqual(cake);
       });
     });
@@ -40,7 +47,11 @@ describe('crud-service', () => {
       const service = buildService(TEST_ENDPOINT);
 
       return service.update('1', cake).then((result) => {
-        expect(api.put).toHaveBeenCalledWith(TEST_ENDPOINT + '/1', cake);
+        expect(api.put).toHaveBeenCalledWith(
+          TEST_ENDPOINT + '/1',
+          cake,
+          DEFAULT_OPTIONS
+        );
         expect(result).toEqual(cake);
       });
     });
@@ -53,7 +64,10 @@ describe('crud-service', () => {
       const service = buildService(TEST_ENDPOINT);
 
       return service.delete('1').then((result) => {
-        expect(api.delete).toHaveBeenCalledWith(TEST_ENDPOINT + '/1');
+        expect(api.delete).toHaveBeenCalledWith(
+          TEST_ENDPOINT + '/1',
+          DEFAULT_OPTIONS
+        );
       });
     });
   });

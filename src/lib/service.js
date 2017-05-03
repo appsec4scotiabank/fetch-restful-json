@@ -2,6 +2,10 @@ import url from 'url';
 import path from 'path';
 import api from './api';
 
+const DEFAULT_OPTIONS = {
+  headers: { 'Content-Type': 'application/json' }
+};
+
 const json = (request) => request.then(result => result.json());
 
 const getUrl = (endpoint, ...paths) => {
@@ -12,9 +16,11 @@ const getUrl = (endpoint, ...paths) => {
 
 export function buildService(endpoint) {
   return {
-    find: () => json(api.get(endpoint)),
-    create: (body) => json(api.post(endpoint, body)),
-    update: (id, body) => json(api.put(getUrl(endpoint, id), body)),
-    delete: (id) => json(api.delete(getUrl(endpoint, id)))
+    find: () => json(api.get(endpoint, DEFAULT_OPTIONS)),
+    create: (body) => json(api.post(endpoint, body, DEFAULT_OPTIONS)),
+    update: (id, body) => json(
+      api.put(getUrl(endpoint, id), body, DEFAULT_OPTIONS)
+    ),
+    delete: (id) => json(api.delete(getUrl(endpoint, id), DEFAULT_OPTIONS))
   };
 }

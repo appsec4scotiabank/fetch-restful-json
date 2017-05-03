@@ -1,21 +1,16 @@
-import merge from 'lodash/merge';
 import api from '../api';
 
 describe('api', () => {
   const TEST_ENDPOINT = '/api/test';
-  const DEFAULT_OPTIONS = {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' }
-  };
 
   describe('#send', () => {
     test('should make default request', () => {
       global.fetch = jest.fn();
       api.send(TEST_ENDPOINT);
-      expect(fetch).toHaveBeenCalledWith(TEST_ENDPOINT, DEFAULT_OPTIONS);
+      expect(fetch).toHaveBeenCalledWith(TEST_ENDPOINT, {});
     });
 
-    test('should override default options', () => {
+    test('should pass down options', () => {
       global.fetch = jest.fn();
       api.send(TEST_ENDPOINT, {
         method: 'POST',
@@ -23,10 +18,19 @@ describe('api', () => {
       });
       expect(fetch).toHaveBeenCalledWith(
         TEST_ENDPOINT,
-        merge(DEFAULT_OPTIONS, {
+        {
           method: 'POST',
           headers: { 'Content-Type': 'application/pdf' }
-        })
+        }
+      );
+    });
+
+    test('overrides options in order', () => {
+      global.fetch = jest.fn();
+      api.send(TEST_ENDPOINT, { method: 'POST' }, { method: 'GET' });
+      expect(fetch).toHaveBeenCalledWith(
+        TEST_ENDPOINT,
+        { method: 'GET' }
       );
     });
   });
@@ -35,7 +39,7 @@ describe('api', () => {
     test('should make get request', () => {
       global.fetch = jest.fn();
       api.get(TEST_ENDPOINT);
-      expect(fetch).toHaveBeenCalledWith(TEST_ENDPOINT, DEFAULT_OPTIONS);
+      expect(fetch).toHaveBeenCalledWith(TEST_ENDPOINT, { method: 'GET' });
     });
   });
 
@@ -48,10 +52,10 @@ describe('api', () => {
 
       expect(fetch).toHaveBeenCalledWith(
         TEST_ENDPOINT,
-        merge(DEFAULT_OPTIONS, {
+        {
           method: 'POST',
           body: JSON.stringify(cake)
-        })
+        }
       );
     });
   });
@@ -65,10 +69,10 @@ describe('api', () => {
 
       expect(fetch).toHaveBeenCalledWith(
         TEST_ENDPOINT,
-        merge(DEFAULT_OPTIONS, {
+        {
           method: 'PUT',
           body: JSON.stringify(cake)
-        })
+        }
       );
     });
   });
@@ -81,9 +85,9 @@ describe('api', () => {
 
       expect(fetch).toHaveBeenCalledWith(
         TEST_ENDPOINT,
-        merge(DEFAULT_OPTIONS, {
+        {
           method: 'DELETE'
-        })
+        }
       );
     });
   });

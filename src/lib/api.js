@@ -1,13 +1,8 @@
 import merge from 'lodash/merge';
 
-export const DEFAULT_OPTIONS = {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-};
+const send = (path, ...options) => fetch(path, merge({}, ...options));
 
-const send = (path, options) => fetch(path, merge(DEFAULT_OPTIONS, options));
+const get = (path) => send(path, { method: 'GET' });
 
 const post = (path, body) => send(
   path,
@@ -23,7 +18,7 @@ const del = (path) => send(path, { method: 'DELETE' });
 
 export default {
   send,
-  get: send,
+  get,
   post,
   put,
   delete: del
