@@ -4,19 +4,24 @@ const send = (path, ...options) => fetch(path, merge({}, ...options));
 
 const get = (path) => send(path, { method: 'GET' });
 
+const jsonBody = (body) => ({ body: JSON.stringify(body) });
+
 const post = (path, body) => send(
   path,
-  { method: 'POST', body: JSON.stringify(body) }
+  { method: 'POST' },
+  jsonBody(body)
 );
 
 const put = (path, body) => send(
   path,
-  { method: 'PUT', body: JSON.stringify(body) }
+  { method: 'PUT' },
+  jsonBody(body)
 );
 
 const patch = (path, body) => send(
   path,
-  { method: 'PATCH', body: JSON.stringify(body) }
+  { method: 'PATCH' },
+  jsonBody(body)
 );
 
 const del = (path) => send(path, { method: 'DELETE' });
