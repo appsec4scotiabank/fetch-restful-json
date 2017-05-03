@@ -12,32 +12,27 @@ const getUrl = (endpoint, ...paths) => {
   return url.format(parsedUrl);
 };
 
+const jsonFromPromise = (request) => request.then(response => response.json());
+
+const makeRequest = (method, ...args) => jsonFromPromise(
+  method(...args, DEFAULT_OPTIONS)
+);
+
 class Service {
   constructor(endpoint) {
     this.endpoint = endpoint;
   }
-  static jsonFromPromise(request) {
-    return request.then(response => response.json());
-  }
   find() {
-    return Service.jsonFromPromise(
-      api.get(this.endpoint, DEFAULT_OPTIONS)
-    );
+    return makeRequest(api.get, this.endpoint);
   }
   create(body) {
-    return Service.jsonFromPromise(
-      api.post(this.endpoint, body, DEFAULT_OPTIONS)
-    );
+    return makeRequest(api.post, this.endpoint, body);
   }
   update(id, body) {
-    return Service.jsonFromPromise(
-      api.put(getUrl(this.endpoint, id), body, DEFAULT_OPTIONS)
-    );
+    return makeRequest(api.put, getUrl(this.endpoint, id), body);
   }
   delete(id) {
-    return Service.jsonFromPromise(
-      api.delete(getUrl(this.endpoint, id), DEFAULT_OPTIONS)
-    );
+    return makeRequest(api.delete, getUrl(this.endpoint, id));
   }
 }
 
