@@ -67,7 +67,7 @@ describe('service', () => {
 
       const service = buildService(testEndpoint);
 
-      return service.delete('1').then((result) => {
+      return service.remove('1').then((result) => {
         expect(fetchMock.done(detailEndpoint)).toEqual(true);
         expect(result).toEqual({ response: 200 });
       });

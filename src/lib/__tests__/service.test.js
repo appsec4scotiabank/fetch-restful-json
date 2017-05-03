@@ -78,7 +78,7 @@ describe('crud-service', () => {
 
       const service = buildService(TEST_ENDPOINT);
 
-      return service.delete('1').then((result) => {
+      return service.remove('1').then((result) => {
         expect(api.delete).toHaveBeenCalledWith(
           `${TEST_ENDPOINT}/1`,
           DEFAULT_OPTIONS

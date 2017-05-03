@@ -35,7 +35,7 @@ class Service {
       body
     );
   }
-  delete(id) {
+  remove(id) {
     return makeRequest(api.delete, getUrl(this.endpoint, id));
   }
 }
