@@ -19,12 +19,12 @@ const put = (path, body) => send(
   { method: 'PUT', body: JSON.stringify(body) }
 );
 
-const fetchDelete = (path) => send(path, { method: 'DELETE' });
+const del = (path) => send(path, { method: 'DELETE' });
 
 export default {
   send,
   get: send,
   post,
   put,
-  delete: fetchDelete
+  delete: del
 };
