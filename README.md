@@ -15,14 +15,8 @@ yarn add --dev fetch-restful-json
 ```js
 import fetchRestfulJson from 'fetch-restful-json';
 
-// Your auth stuff here
-import auth from 'app/services/auth';
-
 const restfulFetch = fetchRestfulJson({
-  base: '/api/v1',
-  headers: () => ({
-    Authorization: auth.getToken()
-  })
+  base: '/api/v1'
 });
 
 const cakes = restfulFetch.service('cakes'); // Define resource '/api/v1/cakes'
