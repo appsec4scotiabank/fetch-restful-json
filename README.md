@@ -1,4 +1,5 @@
 ## fetch-restful-json
+[![CircleCI Status](https://circleci.com/gh/scotiabank/fetch-restful-json.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/scotiabank/fetch-restful-json)
 
 Simple RESTful APIs for [fetch clients](https://github.com/github/fetch).
 
