@@ -8,7 +8,11 @@
   "scripts": {
     "lint": "eslint *.js src",
     "test": "jest src",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "babel": "babel src --out-dir dist",
+    "clean": "shx rm -rf dist",
+    "build": "npm run clean && npm run lint && npm run test && npm run babel",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@scotia/eslint-config-scotiabank": "1.0.0",
@@ -22,6 +26,7 @@
     "fetch-mock": "5.10.0",
     "jest": "19.0.2",
     "rollup": "0.41.6",
+    "shx": "^0.2.2",
     "whatwg-fetch": "2.0.3"
   },
   "jest": {
