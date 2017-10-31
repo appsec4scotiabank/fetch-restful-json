@@ -10,10 +10,6 @@
     "test": "jest src",
     "test:watch": "npm run test -- --watch"
   },
-  "engines": {
-    "node": "7.1.0",
-    "npm": "3.10.9"
-  },
   "devDependencies": {
     "@scotia/eslint-config-scotiabank": "1.0.0",
     "babel-cli": "6.24.0",
