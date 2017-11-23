@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "repository": "https://github.com/scotiabank/fetch-restful-json.git",
   "homepage": "https://github.com/scotiabank/fetch-restful-json",
-  "main": "./src/index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "description": "Simple RESTful APIs for fetch clients.",
   "scripts": {
     "lint": "eslint *.js src",
