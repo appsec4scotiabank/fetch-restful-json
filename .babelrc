@@ -1,4 +1,12 @@
 {
   "presets": [ "env" ],
-  "plugins": [ "transform-object-rest-spread" ]
+  "plugins": [ "transform-object-rest-spread" ],
+  "env": {
+    "development": {
+      "ignore": [
+        "src/**/*.test.js",
+        "src/test/*"
+      ]
+    }
+  }
 }
