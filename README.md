@@ -38,3 +38,7 @@ await result = cakes.remove(cake.id); // DELETE request
 
 await cakes = cakes.find(); // GET request
 ```
+
+## Contributing
+
+#### Scotiabank is committed to enriching the developer community through open source collaboration. We’ve just begun this exciting journey with all of you! At present, we’re only accepting contributions from individuals with whom we have a prior agreement. Stay tuned for more updates from us!
